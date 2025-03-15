@@ -3,6 +3,8 @@ package controllers
 import (
 	"GoAir-Events/Events/application/services"
 	"GoAir-Events/Events/infrastructure"
+	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,5 +20,13 @@ func NewDurationVentilationController() *DurationVentilationController {
 }
 
 func (svc DurationVentilationController) DurationVentilation(c *gin.Context) {
+	duration := c.Param("duration")
+	durationSeconds, _ := strconv.ParseInt(duration, 10, 64)
 
+	svc.service.Run(int(durationSeconds))
+	
+	c.JSON(http.StatusOK, gin.H{
+		"status": true,
+	})
+	
 }

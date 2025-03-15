@@ -3,6 +3,7 @@ package controllers
 import (
 	"GoAir-Events/Events/application/services"
 	"GoAir-Events/Events/infrastructure"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,5 +19,9 @@ func NewStartVentilationController() *StartVentilationController {
 }
 
 func (svc StartVentilationController) StartVentilation(c *gin.Context) {
-
+	svc.service.Run()
+	
+	c.JSON(http.StatusOK, gin.H{
+		"status": true,
+	})
 }
