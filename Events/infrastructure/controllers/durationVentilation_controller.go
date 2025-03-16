@@ -20,7 +20,7 @@ func NewDurationVentilationController() *DurationVentilationController {
 }
 
 func (svc DurationVentilationController) DurationVentilation(c *gin.Context) {
-	duration := c.Param("duration")
+	duration := c.Param("time")
 	durationSeconds, _ := strconv.ParseInt(duration, 10, 64)
 
 	svc.service.Run(int(durationSeconds))

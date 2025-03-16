@@ -11,6 +11,6 @@ func RegisterRouter(r *gin.Engine) {
 	{
 		eventsRouter.POST("/start", controllers.NewStartVentilationController().StartVentilation)
 		eventsRouter.POST("/stop", controllers.NewStopVentilationController().StopVentilation)
-		eventsRouter.POST("/duration", controllers.NewDurationVentilationController().DurationVentilation)
+		eventsRouter.POST("/duration/:time", controllers.NewDurationVentilationController().DurationVentilation)
 	}
 }

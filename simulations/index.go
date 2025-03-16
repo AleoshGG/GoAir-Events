@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"simulations/utils"
+	"time"
 )
 
 func main() {
@@ -25,8 +26,13 @@ func main() {
 
 		if airQuality < 45 {
 			fmt.Println("La habitación no necesita ventilación")
+			continue
 		}
 
+		start := time.Now()
 		utils.Clean(airQuality)
+		duration := time.Since(start)
+
+		utils.FetchAPI("duration", int(duration.Seconds()))
 	}
 }
